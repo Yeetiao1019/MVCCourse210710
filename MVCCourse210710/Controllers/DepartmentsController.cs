@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -60,7 +61,14 @@ namespace MVCCourse210710.Controllers
                 department.StartDate = DateTime.Now;
 
                 db.Department.Add(department);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch(DbEntityValidationException ex)
+                {
+                    throw ex;
+                }
                 return RedirectToAction("Index");
             }
 
