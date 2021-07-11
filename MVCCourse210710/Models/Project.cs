@@ -16,6 +16,5 @@ namespace MVCCourse210710.Models
     {
         public long SerialNO { get; set; }
         public string ProjectName { get; set; }
-        public System.DateTime CreateTime { get; set; }
     }
 }

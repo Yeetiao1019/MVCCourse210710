@@ -66,7 +66,6 @@
           </Key>
           <Property Name="SerialNO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_Course_dbo_Department_DepartmentID">
           <End Role="Department" Type="Self.Department" Multiplicity="1">
@@ -410,7 +409,6 @@
           </Key>
           <Property Name="SerialNO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -491,7 +489,6 @@
           <EntitySetMapping Name="Project">
             <EntityTypeMapping TypeName="ContosoUniversityModel.Project">
               <MappingFragment StoreEntitySet="Project">
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
                 <ScalarProperty Name="SerialNO" ColumnName="SerialNO" />
               </MappingFragment>
