@@ -171,6 +171,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CourseCreate.cs" />
     <Compile Include="ViewModels\DepartmentCreate.cs" />
+    <Compile Include="ViewModels\DepartmentDelete.cs" />
+    <Compile Include="ViewModels\DepartmentEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -244,6 +246,10 @@
     <Content Include="Views\Courses\Create.cshtml" />
     <Content Include="Views\Departments\Edit.cshtml" />
     <Content Include="Views\Dept\Index.cshtml" />
+    <Content Include="Views\Dept\Create.cshtml" />
+    <Content Include="Views\Dept\Edit.cshtml" />
+    <Content Include="Views\Dept\Delete.cshtml" />
+    <Content Include="Views\Dept\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
