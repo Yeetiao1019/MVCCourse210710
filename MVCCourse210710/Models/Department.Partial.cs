@@ -1,5 +1,6 @@
 namespace MVCCourse210710.Models
 {
+    using MVCCourse210710.DataAttributes;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -18,7 +19,8 @@ namespace MVCCourse210710.Models
         [StringLength(50, ErrorMessage = "欄位長度不得大於 50 個字元")]
         public string Name { get; set; }
         [Required]
-        [Range(0, 100, ErrorMessage = "請輸入合理的預算範圍 ({1},{2})")]
+        //[Range(0, 100, ErrorMessage = "請輸入合理的預算範圍 ({1},{2})")]
+        [BudgetAttribute]
         public decimal Budget { get; set; }
         [Required]
         public System.DateTime StartDate { get; set; }
@@ -34,7 +36,8 @@ namespace MVCCourse210710.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        [Range(0, 100, ErrorMessage = "請輸入合理的預算範圍 ({1},{2})")]
+        //[Range(0, 100, ErrorMessage = "請輸入合理的預算範圍 ({1},{2})")]
+        [BudgetAttribute]
         public decimal Budget { get; set; }
         [Required]
         [UIHint("InstructorID")]        //改成下拉選單

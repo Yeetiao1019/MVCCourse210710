@@ -132,6 +132,7 @@
     <Compile Include="Controllers\ManagementController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="ValidationAttributes\BudgetAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -286,6 +287,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Shared\EditTemplate\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
