@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Web.Mvc;
 using MVCCourse210710.ViewModels;
 using System.Net;
+using System.Data.Entity.Validation;
 
 namespace MVCCourse210710.Controllers
 {
@@ -26,7 +27,13 @@ namespace MVCCourse210710.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.InstructorID = new SelectList(db.Person, "ID", "LastName");
+            var personDDLList = db.Person.Select(p => new
+            {
+                p.ID,
+                Name = p.FirstName + " " + p.LastName
+            });
+            ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
+
             return View();
         }
 
@@ -43,11 +50,30 @@ namespace MVCCourse210710.Controllers
                 department.StartDate = DateTime.Now;
 
                 db.Department.Add(department);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach(var eves in ex.EntityValidationErrors)
+                    {
+                        foreach (var ves in eves.ValidationErrors)
+                        {
+                            throw new Exception(ves.PropertyName + " : " + ves.ErrorMessage);
+                        }
+                    }
+                }
                 return RedirectToAction("Index");
             }
 
-            ViewBag.InstructorID = new SelectList(db.Person, "ID", "LastName", departmentCreate.InstructorID);
+            var personDDLList = db.Person.Select(p => new
+            {
+                p.ID,
+                Name = p.FirstName + " " + p.LastName
+            });
+            ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
+
             return View(departmentCreate);
         }
         public ActionResult Details(int? id)
@@ -80,9 +106,15 @@ namespace MVCCourse210710.Controllers
             departmentEdit.DepartmentID = department.DepartmentID;
             departmentEdit.Name = department.Name;
             departmentEdit.Budget = department.Budget;
-            departmentEdit.InstructorID = department.InstructorID;            
+            departmentEdit.InstructorID = department.InstructorID;
 
-            ViewBag.InstructorID = new SelectList(db.Person, "ID", "LastName", departmentEdit.InstructorID);
+            var personDDLList = db.Person.Select(p => new
+            {
+                p.ID,
+                Name = p.FirstName + " " + p.LastName
+            });
+            ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
+
             return View(departmentEdit);
         }
 
@@ -100,13 +132,33 @@ namespace MVCCourse210710.Controllers
                 department.DepartmentID = departmentEdit.DepartmentID;
                 department.Name = departmentEdit.Name;
                 department.Budget = departmentEdit.Budget;
-                department.InstructorID = departmentEdit.InstructorID;                
+                department.InstructorID = departmentEdit.InstructorID;
 
                 db.Department.Add(department);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var eves in ex.EntityValidationErrors)
+                    {
+                        foreach (var ves in eves.ValidationErrors)
+                        {
+                            throw new Exception(ves.PropertyName + " : " + ves.ErrorMessage);
+                        }
+                    }
+                }
                 return RedirectToAction("Index");
             }
-            ViewBag.InstructorID = new SelectList(db.Person, "ID", "LastName", department.InstructorID);
+
+            var personDDLList = db.Person.Select(p => new
+            {
+                p.ID,
+                Name = p.FirstName + " " + p.LastName
+            });
+            ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
+
             return View(departmentEdit);
         }
 
@@ -117,7 +169,7 @@ namespace MVCCourse210710.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Department.Find(id);            
+            Department department = db.Department.Find(id);
             if (department == null)
             {
                 return HttpNotFound();
@@ -130,7 +182,7 @@ namespace MVCCourse210710.Controllers
         // POST: Departments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id , DepartmentDelete departmentDelete)
+        public ActionResult DeleteConfirmed(int id, DepartmentDelete departmentDelete)
         {
             Department department = db.Department.Find(id);
             departmentDelete.Name = department.Name;

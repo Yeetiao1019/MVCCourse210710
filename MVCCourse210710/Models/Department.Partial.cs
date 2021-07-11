@@ -6,8 +6,24 @@ namespace MVCCourse210710.Models
     using System.ComponentModel.DataAnnotations;
 
     [MetadataType(typeof(DepartmentMetaData))]
-    public partial class Department
+    public partial class Department : IValidatableObject
     {
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (HasDirtyWords(Name))
+            {
+                yield return new ValidationResult("名稱不能包含髒話", new string[] { "Name" });
+            }
+        }
+
+        private bool HasDirtyWords(string name)
+        {
+            if (name.Contains("fxxx"))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 
     public partial class DepartmentMetaData
@@ -39,7 +55,6 @@ namespace MVCCourse210710.Models
         //[Range(0, 100, ErrorMessage = "請輸入合理的預算範圍 ({1},{2})")]
         [BudgetAttribute]
         public decimal Budget { get; set; }
-        [Required]
         [UIHint("InstructorID")]        //改成下拉選單
         public Nullable<int> InstructorID { get; set; }
     }
