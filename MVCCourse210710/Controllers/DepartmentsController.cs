@@ -18,7 +18,7 @@ namespace MVCCourse210710.Controllers
         // GET: Departments
         public ActionResult Index()
         {
-            var department = db.Department.Include(d => d.Person);
+            var department = db.Department.Include(d => d.Manager);
             return View(department.ToList());
         }
 
