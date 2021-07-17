@@ -249,6 +249,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dotnet.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -331,6 +332,9 @@
     <Content Include="Views\Shared\CustomDebug.cshtml" />
     <Content Include="Views\AR\VR1.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\AR\PVR1.cshtml" />
+    <Content Include="Views\AR\Robots.cshtml" />
+    <Content Include="Views\AR\FRView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

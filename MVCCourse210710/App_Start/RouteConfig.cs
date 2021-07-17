@@ -13,6 +13,12 @@ namespace MVCCourse210710
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(            //Route規則的有順序之分
+                name: "Robots",
+                url: "robots.txt",
+                defaults: new { controller = "AR", action = "Robots"}
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
