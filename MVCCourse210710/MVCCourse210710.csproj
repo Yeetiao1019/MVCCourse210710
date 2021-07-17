@@ -135,6 +135,7 @@
     <Compile Include="Controllers\DeptController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
+    <Compile Include="Controllers\MBController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Models\CourseRepository.cs">
@@ -335,6 +336,8 @@
     <Content Include="Views\AR\PVR1.cshtml" />
     <Content Include="Views\AR\Robots.cshtml" />
     <Content Include="Views\AR\FRView.cshtml" />
+    <Content Include="Views\MB\MB1.cshtml" />
+    <Content Include="Views\MB\MB2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
