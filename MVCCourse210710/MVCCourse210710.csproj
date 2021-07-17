@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ARController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
@@ -328,6 +329,8 @@
     <Content Include="Views\Dept\Details.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\InstructorID.cshtml" />
     <Content Include="Views\Shared\CustomDebug.cshtml" />
+    <Content Include="Views\AR\VR1.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
