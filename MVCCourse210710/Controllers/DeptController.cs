@@ -13,7 +13,7 @@ using Omu.ValueInjecter;
 
 namespace MVCCourse210710.Controllers
 {
-    public class DeptController : Controller
+    public class DeptController : BaseController
     {
         DepartmentRepository DeptRepo = RepositoryHelper.GetDepartmentRepository();
         PersonRepository PersonRepo;
