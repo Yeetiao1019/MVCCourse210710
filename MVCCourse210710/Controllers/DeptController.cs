@@ -9,29 +9,27 @@ using System.Web.Mvc;
 using MVCCourse210710.ViewModels;
 using System.Net;
 using System.Data.Entity.Validation;
+using Omu.ValueInjecter;
 
 namespace MVCCourse210710.Controllers
 {
     public class DeptController : Controller
     {
-        private ContosoUniversityEntities db = new ContosoUniversityEntities();
+        DepartmentRepository DeptRepo = RepositoryHelper.GetDepartmentRepository();
+        PersonRepository PersonRepo;
         // GET: Dept
         public DeptController()
         {
-            db.Database.Log = (msg) => Debug.WriteLine(msg);        //在偵錯時將EF做了甚麼操作列在輸出視窗
+            DeptRepo.UnitOfWork.Context.Database.Log = (msg) => Debug.WriteLine(msg);        //在偵錯時將EF做了甚麼操作列在輸出視窗
         }
         public ActionResult Index()
         {
-            return View(db.Department.Include(d => d.Manager));
+            return View(DeptRepo.All());
         }
 
         public ActionResult Create()
         {
-            var personDDLList = db.Person.Select(p => new
-            {
-                p.ID,
-                Name = p.FirstName + " " + p.LastName
-            });
+            var personDDLList = PersonRepo.GetPersonSelect();
             ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
 
             return View();
@@ -44,15 +42,11 @@ namespace MVCCourse210710.Controllers
             if (ModelState.IsValid)
             {
                 Department department = new Department();
-                department.Name = departmentCreate.Name;
-                department.Budget = departmentCreate.Budget;
-                department.InstructorID = departmentCreate.InstructorID;
-                department.StartDate = DateTime.Now;
-
-                db.Department.Add(department);
+                department.InjectFrom(departmentCreate);
+                DeptRepo.Add(department);
                 try
                 {
-                    db.SaveChanges();
+                    DeptRepo.UnitOfWork.Commit();
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -67,11 +61,7 @@ namespace MVCCourse210710.Controllers
                 return RedirectToAction("Index");
             }
 
-            var personDDLList = db.Person.Select(p => new
-            {
-                p.ID,
-                Name = p.FirstName + " " + p.LastName
-            });
+            var personDDLList = PersonRepo.GetPersonSelect();
             ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
 
             return View(departmentCreate);
@@ -82,7 +72,7 @@ namespace MVCCourse210710.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Department.Find(id);
+            Department department = DeptRepo.All().FirstOrDefault(d => d.DepartmentID == id); 
             if (department == null)
             {
                 return HttpNotFound();
@@ -96,26 +86,16 @@ namespace MVCCourse210710.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Department.Find(id);
+            Department department = DeptRepo.All().FirstOrDefault(d => d.DepartmentID == id);
             if (department == null)
             {
                 return HttpNotFound();
             }
 
-            DepartmentEdit departmentEdit = new DepartmentEdit();
-            departmentEdit.DepartmentID = department.DepartmentID;
-            departmentEdit.Name = department.Name;
-            departmentEdit.Budget = department.Budget;
-            departmentEdit.InstructorID = department.InstructorID;
-
-            var personDDLList = db.Person.Select(p => new
-            {
-                p.ID,
-                Name = p.FirstName + " " + p.LastName
-            });
+            var personDDLList = PersonRepo.GetPersonSelect();
             ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
 
-            return View(departmentEdit);
+            return View(department);
         }
 
         // POST: Departments/Edit/5
@@ -125,19 +105,13 @@ namespace MVCCourse210710.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int? id, DepartmentEdit departmentEdit)
         {
-            Department department = new Department();
             if (ModelState.IsValid)
             {
-                department = db.Department.Find(id);
-                department.DepartmentID = departmentEdit.DepartmentID;
-                department.Name = departmentEdit.Name;
-                department.Budget = departmentEdit.Budget;
-                department.InstructorID = departmentEdit.InstructorID;
-
-                db.Department.Add(department);
+                Department department = DeptRepo.All().FirstOrDefault(d => d.DepartmentID == id);
+                department.InjectFrom(departmentEdit);
                 try
                 {
-                    db.SaveChanges();
+                    DeptRepo.UnitOfWork.Commit();
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -151,12 +125,7 @@ namespace MVCCourse210710.Controllers
                 }
                 return RedirectToAction("Index");
             }
-
-            var personDDLList = db.Person.Select(p => new
-            {
-                p.ID,
-                Name = p.FirstName + " " + p.LastName
-            });
+            var personDDLList = PersonRepo.GetPersonSelect();
             ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
 
             return View(departmentEdit);
@@ -169,14 +138,12 @@ namespace MVCCourse210710.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Department.Find(id);
+            Department department = DeptRepo.All().FirstOrDefault(d => d.DepartmentID == id);
             if (department == null)
             {
                 return HttpNotFound();
             }
-            DepartmentDelete departmentDelete = new DepartmentDelete();
-            departmentDelete.Name = department.Name;
-            return View(departmentDelete);
+            return View(department);
         }
 
         // POST: Departments/Delete/5
@@ -184,11 +151,9 @@ namespace MVCCourse210710.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id, DepartmentDelete departmentDelete)
         {
-            Department department = db.Department.Find(id);
-            departmentDelete.Name = department.Name;
-
-            db.Department.Remove(department);
-            db.SaveChanges();
+            Department department = DeptRepo.All().FirstOrDefault(d => d.DepartmentID == id);
+            DeptRepo.Delete(department);
+            DeptRepo.UnitOfWork.Commit();
             return RedirectToAction("Index");
         }
     }

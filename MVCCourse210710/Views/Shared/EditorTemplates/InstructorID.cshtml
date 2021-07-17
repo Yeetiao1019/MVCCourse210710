@@ -1,0 +1,5 @@
+﻿@model Nullable<int>
+
+@{ var list = ViewBag.InstructorID as IEnumerable<SelectListItem>; }
+
+@Html.DropDownList("", list, htmlAttributes: new { @class = "form-control" })
