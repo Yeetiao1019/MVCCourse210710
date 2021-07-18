@@ -370,7 +370,6 @@
     <Content Include="img\ui-icons_888888_256x240.png" />
     <Content Include="img\ui-icons_cd0a0a_256x240.png" />
     <Content Include="img\uploadify-cancel.png" />
-    <Content Include="Views\Metro\index.html" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\counter.js" />
@@ -501,6 +500,7 @@
     <Content Include="Views\Dept\Create.cshtml" />
     <Content Include="Views\AR\GetXML.cshtml" />
     <Content Include="Views\Metro\Index.cshtml" />
+    <Content Include="Views\Metro\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
