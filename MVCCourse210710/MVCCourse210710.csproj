@@ -125,6 +125,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilterAttributes\ContentTypeAttribute.cs" />
     <Compile Include="ActionFilterAttributes\PersonSelectListForViewByViewBag.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -342,6 +343,7 @@
     <Content Include="Views\MB\MB2.cshtml" />
     <Content Include="Views\Dept\BatchEdit.cshtml" />
     <Content Include="Views\Dept\Create.cshtml" />
+    <Content Include="Views\AR\GetXML.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -39,6 +39,7 @@ namespace MVCCourse210710.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [PersonSelectListForViewByViewBag]
+        [HandleError(ExceptionType = typeof(DbEntityValidationException),View = "DbEntityValidationException")]
         public ActionResult Create(DepartmentCreate departmentCreate)
         {
             if (ModelState.IsValid)
@@ -46,20 +47,8 @@ namespace MVCCourse210710.Controllers
                 Department department = new Department();
                 department.InjectFrom(departmentCreate);
                 DeptRepo.Add(department);
-                try
-                {
-                    DeptRepo.UnitOfWork.Commit();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach(var eves in ex.EntityValidationErrors)
-                    {
-                        foreach (var ves in eves.ValidationErrors)
-                        {
-                            throw new Exception(ves.PropertyName + " : " + ves.ErrorMessage);
-                        }
-                    }
-                }
+                DeptRepo.UnitOfWork.Commit();
+
                 return RedirectToAction("Index");
             }
 

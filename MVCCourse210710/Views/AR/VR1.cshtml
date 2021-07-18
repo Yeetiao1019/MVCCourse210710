@@ -1,7 +1,17 @@
-﻿
-@{
-    ViewBag.Title = "VR1";
+﻿@{ var data = new int[] { 1, 2, 3, 4, 5 };}
+@for (int i = 0; i < data.Length; i++)
+{
+    @data[i]
 }
-
-<h2>VR1</h2>
-
+<br>
+@for (int i = 0; i < data.Length; i++)
+{
+    @(data[i] + " ")
+}
+<br>
+<ul>
+@for (int i = 0; i < data.Length; i++)
+{
+  <li>@data[i]</li>
+}
+</ul>

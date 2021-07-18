@@ -1,4 +1,4 @@
-﻿using MVCCourse210710.ValidationAttributes;
+﻿using MVCCourse210710.ActionFilterAttributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace MVCCourse210710.Controllers
         }
         public ActionResult VR2()
         {
-            return View("VR1");     //跑VR1的頁面
+            return PartialView("VR1");     //跑VR1的頁面
         }
         public ActionResult VR3()
         {
