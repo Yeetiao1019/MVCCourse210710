@@ -15,11 +15,7 @@ namespace MVCCourse210710.ActionFilterAttributes
         {
             if(filterContext.Result is ViewResultBase)
             {
-                filterContext.Controller.ViewBag.InstuctorID = repo.All().Select(p => new SelectListItem
-                {
-                    Text = p.FirstName + " " + p.LastName,
-                    Value = p.ID.ToString()
-                });
+                filterContext.Controller.ViewBag.InstuctorID = new SelectList(repo.GetPersonSelect(),"Value","Text");
             }
 
             base.OnResultExecuting(filterContext);
