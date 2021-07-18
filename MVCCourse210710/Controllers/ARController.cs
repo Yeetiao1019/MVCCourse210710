@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCCourse210710.ValidationAttributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -52,6 +53,11 @@ namespace MVCCourse210710.Controllers
                 "~/Content/dotnet.png"),
                 "image/png",
                 "MicrosoftdotNet.jpg");
+        }
+        [ContentType("text/xml")]
+        public ActionResult GetXML()
+        {
+            return PartialView();
         }
     }
 }

@@ -240,6 +240,7 @@
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationAttributes\ContentTypeAttribute.cs" />
     <Compile Include="ViewModels\CourseCreate.cs" />
     <Compile Include="ViewModels\DepartmentCreate.cs" />
     <Compile Include="ViewModels\DepartmentDelete.cs" />
@@ -338,6 +339,7 @@
     <Content Include="Views\AR\FRView.cshtml" />
     <Content Include="Views\MB\MB1.cshtml" />
     <Content Include="Views\MB\MB2.cshtml" />
+    <Content Include="Views\AR\GetXML.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
