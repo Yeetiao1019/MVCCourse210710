@@ -125,6 +125,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilterAttributes\PersonSelectListForViewByViewBag.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -240,7 +241,7 @@
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValidationAttributes\ContentTypeAttribute.cs" />
+    <Compile Include="ViewModels\BatchEditViewModel.cs" />
     <Compile Include="ViewModels\CourseCreate.cs" />
     <Compile Include="ViewModels\DepartmentCreate.cs" />
     <Compile Include="ViewModels\DepartmentDelete.cs" />
@@ -339,7 +340,8 @@
     <Content Include="Views\AR\FRView.cshtml" />
     <Content Include="Views\MB\MB1.cshtml" />
     <Content Include="Views\MB\MB2.cshtml" />
-    <Content Include="Views\AR\GetXML.cshtml" />
+    <Content Include="Views\Dept\BatchEdit.cshtml" />
+    <Content Include="Views\Dept\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

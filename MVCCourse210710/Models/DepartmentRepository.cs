@@ -6,9 +6,9 @@ namespace MVCCourse210710.Models
 {   
 	public  class DepartmentRepository : EFRepository<Department>, IDepartmentRepository
 	{
-        public override IQueryable<Department> All()
+		public Department FindOne(int id)
         {
-            return base.All();
+            return this.All().FirstOrDefault(d => d.DepartmentID == id);
         }
     }
 
