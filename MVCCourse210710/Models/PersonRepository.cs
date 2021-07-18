@@ -6,15 +6,14 @@ namespace MVCCourse210710.Models
 {   
 	public  class PersonRepository : EFRepository<Person>, IPersonRepository
 	{
-		public IQueryable GetPersonSelect()
-        {
-			IQueryable select = All().Select(p => new
-			{
-				p.ID,
-				Name = p.FirstName + " " + p.LastName
-			});
-			return select;
-		}
+		//public IEnumerable<System.Web.Mvc.SelectListItem> GetPersonSelect()
+  //      {
+		//	return this.All().Select(p => new System.Web.Mvc.SelectListItem
+		//	{
+		//		Text = p.FirstName + " " + p.LastName,
+		//		Value = p.ID.ToString()
+		//	});
+		//}
 	}
 
 	public  interface IPersonRepository : IRepository<Person>

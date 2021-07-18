@@ -10,13 +10,14 @@ using MVCCourse210710.ViewModels;
 using System.Net;
 using System.Data.Entity.Validation;
 using Omu.ValueInjecter;
+using MVCCourse210710.ActionFilterAttributes;
 
 namespace MVCCourse210710.Controllers
 {
     public class DeptController : BaseController
     {
         DepartmentRepository DeptRepo = RepositoryHelper.GetDepartmentRepository();
-        PersonRepository PersonRepo;
+        PersonRepository PersonRepo = RepositoryHelper.GetPersonRepository();
         // GET: Dept
         public DeptController()
         {
@@ -27,16 +28,17 @@ namespace MVCCourse210710.Controllers
             return View(DeptRepo.All());
         }
 
+        [PersonSelectListForViewByViewBag]
         public ActionResult Create()
         {
-            //var personDDLList = PersonRepo.GetPersonSelect();
-            //ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
+            ViewBag.InstructorID = new SelectList(PersonRepo.GetPersonSelect(), "Value", "Text");
 
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [PersonSelectListForViewByViewBag]
         public ActionResult Create(DepartmentCreate departmentCreate)
         {
             if (ModelState.IsValid)
@@ -61,9 +63,6 @@ namespace MVCCourse210710.Controllers
                 return RedirectToAction("Index");
             }
 
-            var personDDLList = PersonRepo.GetPersonSelect();
-            ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
-
             return View(departmentCreate);
         }
         public ActionResult Details(int? id)
@@ -80,6 +79,7 @@ namespace MVCCourse210710.Controllers
             return View(department);
         }
         // GET: Departments/Edit/5
+        [PersonSelectListForViewByViewBag]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -92,9 +92,6 @@ namespace MVCCourse210710.Controllers
                 return HttpNotFound();
             }
 
-            var personDDLList = PersonRepo.GetPersonSelect();
-            ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
-
             return View(department);
         }
 
@@ -103,6 +100,7 @@ namespace MVCCourse210710.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [PersonSelectListForViewByViewBag]
         public ActionResult Edit(int? id, DepartmentEdit departmentEdit)
         {
             if (ModelState.IsValid)
@@ -125,8 +123,6 @@ namespace MVCCourse210710.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            var personDDLList = PersonRepo.GetPersonSelect();
-            ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
 
             return View(departmentEdit);
         }
