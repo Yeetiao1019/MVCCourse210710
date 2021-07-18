@@ -29,8 +29,8 @@ namespace MVCCourse210710.Controllers
 
         public ActionResult Create()
         {
-            var personDDLList = PersonRepo.GetPersonSelect();
-            ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
+            //var personDDLList = PersonRepo.GetPersonSelect();
+            //ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
 
             return View();
         }
@@ -129,6 +129,41 @@ namespace MVCCourse210710.Controllers
             ViewBag.InstructorID = new SelectList(personDDLList, "ID", "Name");
 
             return View(departmentEdit);
+        }
+
+        public ActionResult BatchEdit()
+        {
+            return View(db.Department.Include(d=>d.Manager));
+        }
+
+        [HttpPost]
+        public ActionResult BatchEdit(BatchEditViewModel[] data)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var item in data)
+                {
+                    var findOne = DeptRepo.FindOne(item.DepartmentID);
+                    findOne.InjectFrom(item);
+                }
+                try
+                {
+                    DeptRepo.UnitOfWork.Commit();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var eves in ex.EntityValidationErrors)
+                    {
+                        foreach (var ves in eves.ValidationErrors)
+                        {
+                            throw new Exception(ves.PropertyName + " : " + ves.ErrorMessage);
+                        }
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+
+            return View(db.Department.Include(d => d.Manager));
         }
 
         // GET: Departments/Delete/5

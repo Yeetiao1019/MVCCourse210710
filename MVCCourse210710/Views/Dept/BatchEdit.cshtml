@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MVCCourse210710.Models.Department>
+
+@{
+    ViewBag.Title = "BatchEdit";
+}
+
+<h2>BatchEdit</h2>
+
+@using (Html.BeginForm())
+{
+    <button type="submit">批次更新</button>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Budget)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manager)
+            </th>
+        </tr>
+
+        @{ 
+            var data = Model.ToArray();
+        }
+
+        @for(int i = 0;i<data.Length;i++)
+        {
+    <tr>
+        <td>
+            @Html.HiddenFor(modelItem => data[i].DepartmentID)
+            @Html.EditorFor(modelItem => data[i].Name)
+        </td>
+        <td>
+            @Html.EditorFor(modelItem => data[i].Budget)
+        </td>
+        <th>
+            @Html.EditorFor(model => data[i].StartDate)
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => data[i].Manager.LastName)
+        </td>
+    </tr>
+        }
+
+    </table>
+}
