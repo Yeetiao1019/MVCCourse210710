@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVCCourse210710.Models;
+using X.PagedList;
+
 
 namespace MVCCourse210710.Controllers
 {
@@ -15,10 +17,11 @@ namespace MVCCourse210710.Controllers
         private ContosoUniversityEntities db = new ContosoUniversityEntities();
 
         // GET: People
-        public ActionResult Index()
+        public ActionResult Index(int pageNum = 1, int pageSize = 3)
         {
-            var person = db.Person.Include(p => p.OfficeAssignment);
-            return View(person.ToList());
+            var person = db.Person.Include(p => p.OfficeAssignment).OrderBy(o => o.ID).ToPagedList(pageNum,pageSize);
+
+            return View(person);
         }
 
         // GET: People/Details/5
