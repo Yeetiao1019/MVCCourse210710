@@ -33,7 +33,7 @@ namespace MVCCourse210710.Controllers
         [PersonSelectListForViewByViewBag]
         public ActionResult Create()
         {
-            ViewBag.InstructorID = new SelectList(PersonRepo.GetPersonSelect(), "Value", "Text");
+            ViewBag.InstructorID = new SelectList(PersonRepo.GetPersonSelect(), "Value", "Text" , 5);
 
             return View();
         }

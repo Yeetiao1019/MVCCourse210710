@@ -3,6 +3,7 @@ namespace MVCCourse210710.Models
     using MVCCourse210710.DataAttributes;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     [MetadataType(typeof(DepartmentMetaData))]
@@ -32,6 +33,7 @@ namespace MVCCourse210710.Models
         [UIHint("DepartmentID")]
         public int DepartmentID { get; set; }
         [Required]
+        [DisplayName("部門名稱")]
         [StringLength(50, ErrorMessage = "欄位長度不得大於 50 個字元")]
         public string Name { get; set; }
         [Required]
