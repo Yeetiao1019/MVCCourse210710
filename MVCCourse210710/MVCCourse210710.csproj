@@ -508,6 +508,7 @@
     <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Date.cshtml" />
     <None Include="Views\Shared\DisplayTemplates\Stars.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
