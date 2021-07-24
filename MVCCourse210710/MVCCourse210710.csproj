@@ -152,6 +152,7 @@
     <Compile Include="Controllers\MBController.cs" />
     <Compile Include="Controllers\MetroController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
+    <Compile Include="Controllers\PeopleTempController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Models\CourseRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
@@ -453,6 +454,18 @@
     <Content Include="font\glyphiconshalflings-regular.eot" />
     <Content Include="font\glyphiconshalflings-regular.ttf" />
     <Content Include="font\glyphiconshalflings-regular.woff" />
+    <Content Include="CodeTemplates\MvcControllerEmpty\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcControllerWithActions\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Delete.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Details.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Edit.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Empty.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
+    <Content Include="CodeTemplates\MvcView\List.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
+    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.vb.include.t4" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -519,6 +532,11 @@
     <Content Include="Views\Shared\EditorTemplates\Enum-radio.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Date.cshtml" />
+    <Content Include="Views\PeopleTemp\Create.cshtml" />
+    <Content Include="Views\PeopleTemp\Delete.cshtml" />
+    <Content Include="Views\PeopleTemp\Details.cshtml" />
+    <Content Include="Views\PeopleTemp\Edit.cshtml" />
+    <Content Include="Views\PeopleTemp\Index.cshtml" />
     <None Include="Views\Shared\DisplayTemplates\Stars.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
   </ItemGroup>
