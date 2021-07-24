@@ -144,6 +144,7 @@
     <Compile Include="Models\CourseRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Credits.cs" />
     <Compile Include="Models\DepartmentRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
@@ -502,6 +503,10 @@
     <Content Include="Views\Metro\Index.cshtml" />
     <Content Include="Views\Metro\_ViewStart.cshtml" />
     <Content Include="Views\Dept\Detail_Courses.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Enum-radio.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
+    <None Include="Views\Shared\DisplayTemplates\Stars.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

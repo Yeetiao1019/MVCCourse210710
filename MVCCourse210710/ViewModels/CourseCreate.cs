@@ -8,7 +8,7 @@ namespace MVCCourse210710.ViewModels
     public class CourseCreate
     {
         public string Title { get; set; }
-        public int Credits { get; set; }
+        public MVCCourse210710.Models.Credits Credits { get; set; }
         public int DepartmentID { get; set; }
     }
 }
