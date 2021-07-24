@@ -53,6 +53,11 @@
     </dl>
 </div>
 
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DepartmentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
 @*<h3>課程清單</h3>     直接寫在同一個View，但無法做到關注點分離
     <table class="table">
         <tr>
@@ -77,10 +82,9 @@
         }
     </table>*@
 
-@Html.Partial("Detail_Courses", Model.Course)
+@*@Html.Partial("Detail_Courses", Model.Course)*@
+
+@Html.Action("Detail_Courses", new { DepartmentID = Model.DepartmentID })
 
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.DepartmentID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

@@ -18,10 +18,12 @@ namespace MVCCourse210710.Controllers
     {
         DepartmentRepository DeptRepo = RepositoryHelper.GetDepartmentRepository();
         PersonRepository PersonRepo = RepositoryHelper.GetPersonRepository();
+        CourseRepository CourseRepo;
         // GET: Dept
         public DeptController()
         {
             DeptRepo.UnitOfWork.Context.Database.Log = (msg) => Debug.WriteLine(msg);        //在偵錯時將EF做了甚麼操作列在輸出視窗
+            CourseRepo = RepositoryHelper.GetCourseRepository(DeptRepo.UnitOfWork);     //用同一個連線
         }
         public ActionResult Index()
         {
@@ -42,7 +44,7 @@ namespace MVCCourse210710.Controllers
         [HandleError(ExceptionType = typeof(DbEntityValidationException),View = "DbEntityValidationException")]
         public ActionResult Create(DepartmentCreate departmentCreate)
         {
-            if (ModelState.IsValid)
+                if (ModelState.IsValid)
             {
                 Department department = new Department();
                 department.InjectFrom(departmentCreate);
@@ -66,6 +68,14 @@ namespace MVCCourse210710.Controllers
                 return HttpNotFound();
             }
             return View(department);
+        }
+        public ActionResult Detail_Courses(int? DepartmentID)
+        {
+            if (DepartmentID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return View(CourseRepo.Where(c => c.DepartmentID == DepartmentID));
         }
         // GET: Departments/Edit/5
         [PersonSelectListForViewByViewBag]
