@@ -506,6 +506,7 @@
     <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Enum-radio.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Date.cshtml" />
     <None Include="Views\Shared\DisplayTemplates\Stars.cshtml" />
   </ItemGroup>
   <ItemGroup>

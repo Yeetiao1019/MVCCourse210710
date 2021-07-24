@@ -41,6 +41,7 @@ namespace MVCCourse210710.Models
         [BudgetAttribute]
         public decimal Budget { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public System.DateTime StartDate { get; set; }
         [Required]
         [UIHint("InstructorID")]
